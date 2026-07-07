@@ -5,10 +5,13 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
+#Dependency conflict resolution:
+ENV CI=false 
+
 # Copy dependency mappings first to maximize Docker layer caching
 COPY package*.json ./
 
-# 🔧 Cloned Patching Phase: Resolve package tree conflicts safely in isolation
+#  Cloned Patching Phase: Resolve package tree conflicts safely in isolation
 RUN npm install --save-dev @babel/plugin-proposal-private-property-in-object
 RUN npm install --save react react-dom @types/react @types/react-dom
 RUN npm install react-scripts@3.0.1 --save
