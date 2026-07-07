@@ -65,7 +65,7 @@ jobs:
         ECR_REGISTRY: ${{ needs.continuous_integration.outputs.ecr_registry }} 
       run: |
         # 1. Download the separate manifest repository
-        git clone https://x-access-token:${{ secrets.MANIFEST_REPO_PAT }}@://github.com manifest-dir
+        git clone https://x-access-token:${{ secrets.MANIFEST_REPO_PAT }}@://github.com/Kryptcloud/Bank_kubernetes-manifest.git manifest-dir
         cd manifest-dir
         
         # 2. Swap out the placeholder image string with your real cloud image path

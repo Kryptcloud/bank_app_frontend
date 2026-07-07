@@ -10,15 +10,11 @@ ENV CI=false
 
 # Copy dependency mappings first to maximize Docker layer caching
 COPY package*.json ./
-
-#  Cloned Patching Phase: Resolve package tree conflicts safely in isolation
-RUN npm install --save-dev @babel/plugin-proposal-private-property-in-object
-RUN npm install --save react react-dom @types/react @types/react-dom
-RUN npm install react-scripts@3.0.1 --save
-RUN npm install
+RUN npm ci --legacy-peer-deps
 
 # Copy your actual JavaScript source files into the builder container
 COPY . .
+
 
 # Compile the React/JS source down into 100% pure static web assets
 # This drops all backend dependencies and builds a minimal 'build' folder
