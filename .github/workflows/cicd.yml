@@ -45,35 +45,34 @@ jobs:
 
   # ====================================================
   # STAGE 2: GITOPS DEPLOYMENT (CD)
-  # ====================================================
   gitops_deployment:
     name: Sync Kubernetes Manifest Repo
     runs-on: ubuntu-latest
-    needs: continuous_integration 
+    needs: continuous_integration
 
-    if: github.ref == 'refs/heads/main' # Only run this job on main branch
-    
+    if: github.ref == 'refs/heads/main'
+
     steps:
-    - name: Checkout Code
+    - name: Checkout Manifest Repo
       uses: actions/checkout@v4
+      with:
+        repository: Kryptcloud/Bank_kubernetes-manifest
+        token: ${{ secrets.MANIFEST_REPO_PAT }}
+        path: manifest-dir
 
-    - name: Update Kubernetes Manifest Git Repository
+    - name: Update deployment image and push
       env:
-        MANIFEST_REPO: Kryptcloud/Bank_kubernetes-manifest
+        ECR_REGISTRY: ${{ needs.continuous_integration.outputs.ecr_registry }}
         IMAGE_TAG: sha-${{ github.sha }}
-        # Pulls the ECR address output saved from Stage 1
-        ECR_REGISTRY: ${{ needs.continuous_integration.outputs.ecr_registry }} 
       run: |
-        # 1. Download the separate manifest repository
-        git clone https://x-access-token:${{ secrets.MANIFEST_REPO_PAT }}@github.com/Kryptcloud/Bank_kubernetes-manifest.git manifest-dir
         cd manifest-dir
-        
-        # 2. Swap out the placeholder image string with your real cloud image path
         sed -i "s|image: nginx:alpine-frontend-bootstrap|image: $ECR_REGISTRY/bank-frontend:$IMAGE_TAG|g" deployment.yaml
-        
-        # 3. Save, commit, and push the automated change back up to GitHub
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add deployment.yaml
-        git commit -m "Automated Pipeline Update: Upgraded frontend to image tag $IMAGE_TAG [skip ci]"
-        git push origin main
+
+        if git status --porcelain | grep .; then
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add deployment.yaml
+          git commit -m "Automated Pipeline Update: Upgraded frontend to image tag $IMAGE_TAG [skip ci]"
+          git push origin main
+        else
+          echo "No changes to commit — placeholder image string not found or already updated"
