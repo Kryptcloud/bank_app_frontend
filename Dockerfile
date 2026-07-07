@@ -20,9 +20,9 @@ COPY . .
 # This drops all backend dependencies and builds a minimal 'build' folder
 RUN npm run build
 
-# ====================================================
+# ===================================================
 # STAGE 2: THE SECURE RUNTIME WEB SERVER
-# ====================================================
+# ===================================================
 FROM nginx:stable-alpine
 
 # Copy the compiled static assets directly into Nginx's default hosting directory
