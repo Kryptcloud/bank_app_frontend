@@ -3,6 +3,7 @@
 # ====================================================
 FROM node:18-alpine AS builder
 WORKDIR /app
+ENV NODE_OPTIONS=--openssl-legacy-provider
 
 # Copy dependency mappings first to maximize Docker layer caching
 COPY package*.json ./
