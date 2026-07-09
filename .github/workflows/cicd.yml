@@ -76,3 +76,5 @@ jobs:
           git push origin main
         else
           echo "No changes to commit — placeholder image string not found or already updated"
+          fi
+          
