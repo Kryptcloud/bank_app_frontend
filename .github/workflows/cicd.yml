@@ -72,10 +72,12 @@ jobs:
     - name: Update deployment image and push
       env:
         ECR_REGISTRY: ${{ needs.continuous_integration.outputs.ecr_registry }}
+        ECR_REPOSITORY: bank-frontend
         IMAGE_TAG: sha-${{ github.sha }}
       run: |
         cd manifest-dir
-        sed -i "s|image: nginx:alpine-frontend-bootstrap|image: $ECR_REGISTRY/bank-frontend:$IMAGE_TAG|g" deployment.yaml
+        sed -i -E "s|image: .*bank-frontend:.*|image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG # Placeholder until Frontend CI runs|g" deployment.yaml
+      
 
         if git status --porcelain | grep .; then
           git config user.name "github-actions[bot]"
