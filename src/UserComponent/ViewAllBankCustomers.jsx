@@ -21,7 +21,7 @@ const ViewAllBankCustomers = () => {
 
   const retrieveBankAllCustomerByName = async () => {
     const response = await axios.get(
-      "https://bankapi.pod15engineers.online/api/user/all/customer/search?" +
+      "https://kryptcloud001.online/api/user/all/customer/search?" +
         "customerName=" +
         customerName,
       {
@@ -36,7 +36,7 @@ const ViewAllBankCustomers = () => {
 
   const retrieveAllCustomers = async () => {
     const response = await axios.get(
-      "https://bankapi.pod15engineers.online/api/user/fetch/role?role=CUSTOMER",
+      "https://kryptcloud001.online/api/user/fetch/role?role=CUSTOMER",
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token
@@ -81,7 +81,7 @@ const ViewAllBankCustomers = () => {
     updateUserStatusRequest.userId = userId;
     updateUserStatusRequest.status = "Active";
 
-    fetch("https://bankapi.pod15engineers.online/api/user/update/status", {
+    fetch("https://kryptcloud001.online/api/user/update/status", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -148,7 +148,7 @@ const ViewAllBankCustomers = () => {
     updateUserStatusRequest.userId = userId;
     updateUserStatusRequest.status = "Deactivated";
 
-    fetch("https://bankapi.pod15engineers.online/api/user/update/status", {
+    fetch("https://kryptcloud001.online/api/user/update/status", {
       method: "POST",
       headers: {
         Accept: "application/json",

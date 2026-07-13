@@ -27,7 +27,7 @@ const AddBankAccount = () => {
   };
 
   const saveAccount = (e) => {
-    fetch("https://bankapi.pod15engineers.online/api/bank/account/add", {
+    fetch("https://kryptcloud001.online/api/bank/account/add", {
       method: "POST",
       headers: {
         Accept: "application/json",

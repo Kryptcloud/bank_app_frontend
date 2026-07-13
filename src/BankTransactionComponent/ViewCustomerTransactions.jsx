@@ -29,7 +29,7 @@ const ViewCustomerTransactions = () => {
 
   const retrieveAllTransactions = async () => {
     const response = await axios.get(
-      "https://bankapi.pod15engineers.online/api/bank/transaction/history?userId=" +
+      "https://kryptcloud001.online/api/bank/transaction/history?userId=" +
         customer.id,
       {
         headers: {

@@ -12,7 +12,7 @@ const ViewAllBankTransactions = () => {
 
   const retrieveAllTransactions = async () => {
     const response = await axios.get(
-      "https://bankapi.pod15engineers.online/api/bank/transaction/all",
+      "https://kryptcloud001.online/api/bank/transaction/all",
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token

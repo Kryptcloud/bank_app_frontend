@@ -12,7 +12,7 @@ const ViewBankAllTransactions = () => {
 
   const retrieveAllTransactions = async () => {
     const response = await axios.get(
-      "https://bankapi.pod15engineers.online/api/bank/transaction/all/customer/fetch?bankId=" +
+      "https://kryptcloud001.online/api/bank/transaction/all/customer/fetch?bankId=" +
         bank.bank.id,
       {
         headers: {

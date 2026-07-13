@@ -24,7 +24,7 @@ const CustomerAccountFundTransfer = () => {
   };
 
   const saveAccount = (e) => {
-    fetch("https://bankapi.pod15engineers.online/api/bank/transaction/account/transfer", {
+    fetch("https://kryptcloud001.online/api/bank/transaction/account/transfer", {
       method: "POST",
       headers: {
         Accept: "application/json",

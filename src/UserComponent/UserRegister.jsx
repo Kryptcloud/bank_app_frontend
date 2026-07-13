@@ -46,7 +46,7 @@ const UserRegister = () => {
       jwtToken = sessionStorage.getItem("admin-jwtToken"); // Use admin's JWT token for bank register
     }
 
-    fetch("https://bankapi.pod15engineers.online/api/user/register", {
+    fetch("https://kryptcloud001.online/api/user/register", {
       method: "POST",
       headers: {
         Accept: "application/json",
