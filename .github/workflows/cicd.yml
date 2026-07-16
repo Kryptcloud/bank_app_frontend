@@ -5,6 +5,9 @@ on:
     branches:
       - main
       - dev-branch
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
 
 permissions:
   id-token: write
