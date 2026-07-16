@@ -14,9 +14,9 @@ permissions:
   contents: write
 
 jobs:
-  # ====================================================
+  # ===================================================
   # STAGE 1: CONTINUOUS INTEGRATION (CI)
-  # ====================================================
+  # ===================================================
   continuous_integration:
     name: Code Build & ECR Push
     runs-on: ubuntu-latest
