@@ -6,7 +6,7 @@
 ## Also note that it is also containerized to run on port 3000
 
 ### This is the architecture of the project
-![App Preview](architecture-HIPPAA.drawio.svg)
+(Architecture.drawio.svg)
 
 
 
